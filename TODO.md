@@ -1,19 +1,13 @@
 # TODO
 
-## UI polish (better appearance)
-- [x] Add shared Tailwind component classes to `frontend/src/index.css` (panel/card/button/focus ring)
-
-- [x] Update `frontend/src/components/Navbar.jsx` to use shared button styles and improved active/focus states
-
-- [x] Update `frontend/src/components/Sidebar.jsx` for consistent panel styling and spacing
-
-- [ ] Update `frontend/src/pages/Home.jsx`, `Chat.jsx`, `People.jsx`, `Profile.jsx`, `Stories.jsx` to reduce visual noise using shared styles
-
-
-- [x] Polish chat UI (`ChatBox.jsx`, `MessageBubble.jsx`): consistent height handling + message bubble spacing
-
-
-- [ ] Polish stories UI (`StoryCard.jsx`, `StoryViewer.jsx`): header/footer spacing + caption typography
-- [ ] Polish user components (`UserCard.jsx`, `UserRowLink.jsx`) for consistent card/hover appearance
-- [ ] Quick manual test: navigate through all pages and check mobile/desktop
+- [ ] Deploy backend on Render (configure env vars + verify API health at `/`).
+- [ ] Provision Aiven MySQL (create database + run `backend/database/schema.sql`).
+- [ ] Set Render DB env vars (`DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`).
+- [ ] Set Render JWT env var (`JWT_SECRET`).
+- [ ] Set Render CORS env var (`CLIENT_URL` = your Vercel frontend URL).
+- [ ] Deploy frontend on Vercel (build Vite app).
+- [ ] Set Vercel env vars (build-time): `VITE_API_URL` and `VITE_SOCKET_URL` pointing to Render backend.
+- [ ] Smoke test: login/register + authenticated REST calls.
+- [ ] Smoke test: Socket.IO connection + send/receive message + typing/notifications.
+- [ ] If MySQL fails on Render/Aiven: check if Aiven requires SSL and update `backend/config/db.js` accordingly.
 
