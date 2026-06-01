@@ -1,0 +1,10 @@
+services:
+  - type: web_service
+    name: chat-story-backend
+    env: node
+    plan: starter
+    region: oregon
+    branch: main
+    root: backend
+    buildCommand: npm install
+    startCommand: npm start

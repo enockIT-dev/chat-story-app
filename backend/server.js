@@ -30,7 +30,20 @@ const io = new Server(server, {
 setupSocket(io)
 app.set("io", io)
 
-app.use(cors())
+const clientUrl = process.env.CLIENT_URL || "http://localhost:5173"
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || origin === clientUrl || origin === "http://localhost:5173") {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  credentials: true,
+}
+
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/uploads", express.static(path.join(__dirname, "uploads")))

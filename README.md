@@ -126,11 +126,49 @@ App runs at `http://localhost:5173`
 
 | Service   | Platform suggestions      |
 |-----------|---------------------------|
-| Frontend  | Vercel, Netlify           |
-| Backend   | Render, Railway           |
-| Database  | PlanetScale, MySQL Server |
+| Frontend  | Vercel                    |
+| Backend   | Render                    |
+| Database  | PlanetScale, ClearDB, or any MySQL provider |
 
-Set `VITE_API_URL` and `VITE_SOCKET_URL` in production to your backend URL.
+### Deploy frontend to Vercel
+
+1. In Vercel, create a new project from the `frontend` folder.
+2. Set the build command to `npm run build` and output directory to `dist`.
+3. Add environment variables:
+   - `VITE_API_URL=https://<your-render-backend>.onrender.com/api`
+   - `VITE_SOCKET_URL=https://<your-render-backend>.onrender.com`
+4. Deploy the site.
+
+### Deploy backend to Render
+
+1. Create a new Web Service on Render.
+2. Connect your repository and set the root directory to `backend`.
+3. Set the build command to `npm install` and the start command to `npm start`.
+4. Add environment variables:
+   - `PORT=5000`
+   - `DB_HOST=<your-mysql-host>`
+   - `DB_USER=<your-mysql-user>`
+   - `DB_PASSWORD=<your-mysql-password>`
+   - `DB_NAME=<your-mysql-database>`
+   - `JWT_SECRET=<your-jwt-secret>`
+   - `CLIENT_URL=https://<your-vercel-app>.vercel.app`
+5. Deploy the service.
+
+### MySQL database options
+
+Use a hosted MySQL database for production. Recommended providers:
+- PlanetScale
+- ClearDB
+- AWS RDS
+- Azure Database for MySQL
+- JawsDB
+
+After creating the database, run the SQL schema from `backend/database/schema.sql`.
+
+### Important notes
+
+- `backend/uploads` is local storage. On Render, the filesystem is ephemeral, so uploaded files are not permanent. For production, replace this with cloud storage like AWS S3 or DigitalOcean Spaces.
+- Use your Render backend URL in frontend environment variables.
 
 ## Future Features
 
